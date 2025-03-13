@@ -21,7 +21,7 @@ The third task involved building a todo web application using HTML, CSS, and Jav
 
 To view and interact with the completed tasks, please follow these steps:
 
-1. Clone this repository: `git clone https://github.com/Rishabh6306/OIBSIP/tree/main`
+1. Clone this repository: `git clone https://github.com/Sai-Srikanth27/OIBSIP.git`
 2. Open the respective task folders in your preferred code editor.
 3. Launch the HTML files in a web browser to experience the functionality of each task.
 
