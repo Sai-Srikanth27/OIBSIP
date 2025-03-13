@@ -1,115 +1,125 @@
-
-/* Universal Design */
-* {
-    margin: 0;
-    padding: 0;
-    outline: none;
-    overflow: hidden;
+/* Reset and Base Styles */
+:root {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
 }
 
-/* main container Design  */
-.container {
-    display: grid;
-    place-items: center;
-    background: url(/background.jpg) center center/cover no-repeat;
-    height: 100vh;
+/* Main Wrapper */
+.calc-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(/background.jpg) no-repeat center / cover;
+  min-height: 100vh;
 }
 
-/* calculator body Design  */
-.calculator-body {
-    width: 400px;
-    padding: 20px;
-    background-color: #f1f1f1;
-    border-radius: 10px;
-    border: 2px slid red;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-gap: 8px;
+/* Calculator Container */
+.calc-core {
+  width: 420px;
+  padding: 25px;
+  background: #f5f5f5;
+  border-radius: 12px;
+  border: 2px solid #ff4040;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: grid;
+  grid-template-rows: minmax(0, auto) 1fr minmax(0, auto);
+  gap: 10px;
 }
 
-/* input box screen Design  */
-.calculator-screen {
-    height: 100px;
-    width: 100%;
-    font-size: 24px;
-    border: none;
-    text-align: right;
-    padding-right: 6px;
+/* Display Screen */
+.calc-display {
+  width: 100%;
+  height: 110px;
+  font-size: 26px;
+  border: none;
+  text-align: right;
+  padding: 0 8px;
+  background: #fff;
 }
 
-/* history p tag Design  */
-#para {
-    background-color: white;
-    padding: 5px;
+/* History Display */
+#history {
+  background: #ffffff;
+  padding: 6px;
+  font-size: 16px;
 }
 
-/* Calculator's  row Design  */
-.calc-button-row {
-    display: grid;
-    /* Define columns */
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 10px;
+/* Button Grid */
+.key-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
 }
 
-/* Calculator's  button Design  */
-.button {
-    width: 65px;
-    height: 65px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 25px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
+/* Individual Keys */
+.key {
+  width: 70px;
+  height: 70px;
+  display: grid;
+  place-content: center;
+  font-size: 24px;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-/* button hover Design  */
-.button.c:hover {
-    background-color: #c2b0f5;
+/* Special Key Styles */
+.key.func {
+  background: #b8aaff;
+  color: #fff;
 }
 
-
-.button.c {
-    background-color: #b3a1ea;
-    color: #f8eeee;
+.key.func:hover {
+  background: #a294f0;
 }
 
-.button.l {
-    background-color: #e3e3ff;
+.key.op {
+  background: #e6e6ff;
 }
 
-.button.l:hover {
-    background-color: #ccccfa;
+.key.op:hover {
+  background: #d1d1f5;
 }
 
-
-/* Add Media Query */
+/* Responsive Adjustments */
 @media screen and (max-width: 662px) and (min-width: 344px) {
-    .calculator-body {
-        width: 300px;
-        padding: 15px;
-        grid-gap: 5px;
-    }
+  .calc-core {
+    width: 320px;
+    padding: 18px;
+    gap: 6px;
+  }
 
-    .button {
-        width: 50px;
-        height: 50px;
-        font-size: 23px;
-    }
+  .key {
+    width: 55px;
+    height: 55px;
+    font-size: 22px;
+  }
+
+  .calc-display {
+    height: 90px;
+    font-size: 24px;
+  }
 }
 
 @media screen and (max-width: 345px) {
-    .calculator-body {
-        width: 250px;
-        padding: 15px;
-        grid-gap: 3px;
-    }
+  .calc-core {
+    width: 260px;
+    padding: 12px;
+    gap: 4px;
+  }
 
-    .button {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-    }
+  .key {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+
+  .calc-display {
+    height: 80px;
+    font-size: 20px;
+  }
 }
