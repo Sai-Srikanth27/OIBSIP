@@ -1,41 +1,52 @@
-const inputBox = document.getElementById("input-box");
-const listContainer = document.getElementById("list-container");
+const taskInput = document.getElementById("task-entry");
+const taskList = document.getElementById("task-list");
 
-// function for adding task
-const addTask = () => {
-    if (inputBox.value === "") {
-        alert("You must write something!");
-    } else {
-        listContainer.innerHTML += `<li>${inputBox.value}<span>\u00d7</span></li>`;
+// Creates a new task and adds it to the list
+function createTask() {
+    const taskText = taskInput.value.trim();
+    if (!taskText) {
+        alert("Please enter a task!");
+        return;
     }
-    inputBox.value = "";
-    saveData();
-};
 
-inputBox.addEventListener("keydown", (event) => {
-    if (event.key === "Enter") {
-        addTask();
+    const taskItem = document.createElement("li");
+    taskItem.innerHTML = `${taskText}<span class="delete">\u00d7</span>`;
+    taskList.appendChild(taskItem);
+    taskInput.value = "";
+    persistTasks();
+}
+
+// Handles Enter key press to create a task
+taskInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        createTask();
     }
 });
 
-listContainer.addEventListener("click", (e) => {
-    if (e.target.tagName === "LI") {
-        e.target.classList.toggle("checked");
-        saveData();
-    } else if (e.target.tagName === "SPAN") {
-        e.target.parentElement.remove();
-        saveData();
+// Manages clicks on the task list (toggle complete or delete)
+taskList.addEventListener("click", (event) => {
+    const clickedElement = event.target;
+    if (clickedElement.tagName === "LI") {
+        clickedElement.classList.toggle("completed");
+        persistTasks();
+    } else if (clickedElement.classList.contains("delete")) {
+        clickedElement.parentElement.remove();
+        persistTasks();
     }
-}, false);
+});
 
-// function for saving data on local browser
-const saveData = () => {
-    localStorage.setItem("data", listContainer.innerHTML);
-};
+// Saves the current task list to localStorage
+function persistTasks() {
+    localStorage.setItem("tasks", taskList.innerHTML);
+}
 
-// function for showing data on webpage
-const showTask = () => {
-    listContainer.innerHTML = localStorage.getItem("data");
-};
+// Loads and displays tasks from localStorage
+function displayTasks() {
+    const savedTasks = localStorage.getItem("tasks");
+    if (savedTasks) {
+        taskList.innerHTML = savedTasks;
+    }
+}
 
-showTask();
+// Initialize the task list on page load
+displayTasks();
