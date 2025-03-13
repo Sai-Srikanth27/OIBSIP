@@ -1,188 +1,186 @@
-@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+/* Base Styles */
 * {
-  margin: 0;
-  padding: 0;
-  font-family: 'Mukta', sans-serif;
-  box-sizing: border-box;
-  overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
 }
 
-/* designing the main section */
-.container {
-  width: 100%;
-  min-height: 100vh;
-  background-image: url(Images/3.png);
-  padding: 10px;
-}
-
-.todo-app {
-  width: 100%;
-  max-width: 540px;
-  background: rgb(155, 66, 213);
-  background: linear-gradient(0deg, rgba(155, 66, 213, 1) 55%, rgba(230, 56, 211, 1) 100%);
-  box-shadow: 0 25px 25px 10px #070318;
-  margin: 50px auto 20px;
-  padding: 40px 30px 70px;
-  border-radius: 12px;
-}
-
-.todo-app h2 {
-  font-size: 35px;
-  color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.todo-app h2 img {
-  width: 100px;
-  border-radius: 25px;
-  margin: 10px;
-}
-
-/*  row section */
-.row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #c1ffff;
-  border-radius: 30px;
-  padding-left: 20px;
-  margin-bottom: 25px;
-}
-
-input {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
-  padding: 10px;
-  font-weight: 18px;
-}
-
-/* button */
-button {
-  outline: none;
-  border: none;
-  padding: 16px 50px;
-  background: #2c5feb;
-  color: #ffffff;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 40px;
-}
-
-button:hover {
-  background-color: #6a76e4;
-  color: #ffffff;
-}
-
-/*  list items */
-ul li {
-  width: 80%;
-  margin: 20px auto;
-  background-color: #323444;
-  border-radius: 10px;
-  min-height: 1rem;
-  padding: 6px;
-  display: flex;
-  align-items: center;
-  color: #ffffff;
-  font-weight: 300;
-  padding: 10px;
-  list-style: none;
-  font-size: 17px;
-  user-select: none;
-  cursor: pointer;
-  position: relative;
-  margin: 10%;
-}
-
-ul li::before {
-  content: "";
-  position: absolute;
-  height: 28px;
-  width: 28px;
-  border-radius: 50%;
-  background-image: url(/Images/1.jpeg);
-  background-size: cover;
-  background-position: center;
-  top: 10px;
-  right: 5px;
-  margin-right: 100%;
-}
-
-ul li.checked {
-  color: #f52929;
-  text-decoration: line-through;
-}
-
-ul li.checked::before {
-  background-image: url(/Images/chkd.png);
-}
-
-ul li span {
-  position: absolute;
-  right: 0;
-  top: 5px;
-  width: 30px;
-  height: 30px;
-  font-size: 22px;
-  color: #fffefe;
-  line-height: 30px;
-  text-align: center;
-  border-radius: 50%;
-}
-
-ul li span:hover {
-  background: #89898e;
-}
-
-
-@media (min-width: 365px) and (max-width: 665px) {
-
-  .container {
+/* Main Section Design */
+.task-wrapper {
     width: 100%;
-  }
+    min-height: 100vh;
+    background: url(/assets/cinema-bg.jpg) no-repeat center/cover;
+    padding: 15px;
+}
 
-  .todo-app {
+/* Task Board Styling */
+.task-board {
+    max-width: 600px;
     width: 100%;
-    max-width: 340px;
-  }
+    background: linear-gradient(135deg, #1e3c72 30%, #2a5298 100%);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+    margin: 60px auto 30px;
+    padding: 35px 25px 60px;
+    border-radius: 15px;
+}
 
-  .todo-app h2 {
-    font-size: 30px;
-  }
+/* Header Design */
+.task-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
 
-  .todo-app h2 img {
-    width: 50px;
-  }
+.task-header h1 {
+    color: #fff;
+    font-size: 38px;
+    font-weight: 600;
+}
 
-  .row {
-    padding-left: 10px;
-    margin-bottom: 15px;
-    width: 100%;
-  }
+.task-header .icon {
+    font-size: 32px;
+    color: #00d4ff;
+    margin-left: 15px;
+}
 
-  input {
-    font-weight: 15px;
-  }
+/* Input Section */
+.input-section {
+    display: flex;
+    align-items: center;
+    background: #e6f0fa;
+    border-radius: 25px;
+    padding: 0 15px;
+    margin-bottom: 20px;
+}
 
-  button {
-    font-size: 12px;
-    padding: 10px 15px;
-  }
+#task-entry {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 12px;
+    font-size: 16px;
+    outline: none;
+}
 
-  ul li::before {
-    height: 24px;
+/* Button Styling */
+.input-section button {
+    border: none;
+    background: #ff6b6b;
+    color: #fff;
+    padding: 14px 40px;
+    font-size: 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.input-section button:hover {
+    background: #ff8787;
+}
+
+/* Task List Items */
+.task-items li {
+    position: relative;
+    width: 90%;
+    margin: 15px auto;
+    background: #2d3436;
+    border-radius: 8px;
+    padding: 12px 40px 12px 15px;
+    color: #dfe6e9;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.task-items li::before {
+    content: "";
+    position: absolute;
     width: 24px;
-    border-radius: 40%;
-    background-image: url(/Images/1.jpeg);
-  }
+    height: 24px;
+    border-radius: 50%;
+    background: url(/assets/unchecked.png) no-repeat center/cover;
+    left: 8px;
+}
 
-  ul li.checked::before {
-    background-image: url(/Images/chkd.png);
-  }
+.task-items li.completed {
+    color: #ff7675;
+    text-decoration: line-through;
+}
+
+.task-items li.completed::before {
+    background: url(/assets/checked.png) no-repeat center/cover;
+}
+
+.task-items li .delete {
+    position: absolute;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    font-size: 20px;
+    color: #fff;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+}
+
+.task-items li .delete:hover {
+    background: #636e72;
+}
+
+/* Responsive Adjustments */
+@media (min-width: 365px) and (max-width: 665px) {
+    .task-wrapper {
+        padding: 10px;
+    }
+
+    .task-board {
+        max-width: 360px;
+        padding: 25px 20px 40px;
+    }
+
+    .task-header h1 {
+        font-size: 32px;
+    }
+
+    .task-header .icon {
+        font-size: 26px;
+    }
+
+    .input-section {
+        padding: 0 10px;
+    }
+
+    #task-entry {
+        font-size: 14px;
+    }
+
+    .input-section button {
+        padding: 10px 25px;
+        font-size: 16px;
+    }
+
+    .task-items li {
+        font-size: 16px;
+        padding: 10px 35px 10px 12px;
+    }
+
+    .task-items li::before {
+        width: 20px;
+        height: 20px;
+    }
+
+    .task-items li .delete {
+        width: 22px;
+        height: 22px;
+        line-height: 22px;
+        font-size: 18px;
+    }
 }
