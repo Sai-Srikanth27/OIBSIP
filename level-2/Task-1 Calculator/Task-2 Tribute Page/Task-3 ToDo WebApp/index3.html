@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="/Images/favicon.png" type="image/x-icon">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <title>ToDo</title>
-  <!--Add Css-->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Task Manager</title>
+    <link rel="icon" href="/assets/task-icon.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <!-- main container -->
-  <main class="container">
-    <div class="todo-app">
-      <h2>ToDo List <img src="/Images/2.png" alt="Logo"></h2>
-      <div class="row">
-        <input type="text" id="input-box" placeholder="Type Here">
-        <button onclick="addTask()">Add</button>
-      </div>
-      <ul id="list-container"></ul>
-    </div>
-  </main>
-  <!-- Adding JS -->
-  <script src="script.js"></script>
+    <!-- Core Wrapper -->
+    <section class="task-wrapper">
+        <div class="task-board">
+            <header class="task-header">
+                <h1>Task Manager <span class="icon"><i class="fas fa-check-circle"></i></span></h1>
+            </header>
+            <div class="input-section">
+                <input type="text" id="task-entry" placeholder="Enter your task...">
+                <button type="button" onclick="createTask()">Create</button>
+            </div>
+            <ul id="task-list" class="task-items"></ul>
+        </div>
+    </section>
+    <!-- JavaScript Inclusion -->
+    <script src="app.js"></script>
 </body>
-
 </html>
