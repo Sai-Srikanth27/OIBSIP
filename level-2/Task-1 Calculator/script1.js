@@ -1,110 +1,123 @@
-const numberButtons = document.querySelectorAll(".button");
-const inputBox = document.querySelector(".calculator-screen");
-const para = document.getElementById("para");
+const calcKeys = document.querySelectorAll(".button");
+const display = document.querySelector(".calculator-screen");
+const historyLog = document.getElementById("para");
 
-let calculation = ""; // Variable to store the calculation process
-let negativeFlag = false; // Flag to keep track of the negative symbol
+let currentInput = ""; // Tracks the ongoing calculation
+let isNegative = false; // Tracks if a negative sign is active
 
-function evaluateExpression(expression) {
+// Evaluates the mathematical expression safely
+function computeResult(expr) {
   try {
-    const withExplicitMultiplication = expression.replace(/([\d.]+)([(])/g, "$1*$2");
-    const withoutPercentage = withExplicitMultiplication.replace(/%/g, "/100");
-    const withDivideSymbol = withoutPercentage.replace(/÷/g, "/");
-    const withExponentiationSymbol = withDivideSymbol.replace(/\^/g, "**");
-    return Function(`'use strict'; return (${withExponentiationSymbol})`)();
-  } catch (error) {
-    console.error("Error evaluating expression:", error);
+    // Replace special characters and ensure proper syntax
+    let formattedExpr = expr
+      .replace(/(\d+)([(])/g, "$1*$2") // Implicit multiplication before parentheses
+      .replace(/%/g, "/100") // Convert percentage to division
+      .replace(/÷/g, "/") // Replace division symbol
+      .replace(/\^/g, "**"); // Replace exponent with JS operator
+    return Function(`"use strict"; return (${formattedExpr})`)();
+  } catch (err) {
+    console.warn("Invalid expression:", err);
     return null;
   }
 }
 
-// Function to handle sign change
-function handleSignChange() {
-  if (inputBox.value === "") {
-    inputBox.value = "-"; // Add "-" symbol if input box is empty
-    calculation += "-";
-  } else if (inputBox.value === "-") {
-    inputBox.value = ""; // Remove "-" symbol if it's already present
-    calculation = calculation.slice(0, -1);
+// Toggles the sign of the current value
+function toggleSign() {
+  if (!display.value) {
+    display.value = "-";
+    currentInput += "-";
+  } else if (display.value === "-") {
+    display.value = "";
+    currentInput = currentInput.slice(0, -1);
   } else {
-    const currentValue = parseFloat(inputBox.value);
-    const newValue = -currentValue;
-    inputBox.value = newValue; // Toggle the sign change for the current value
-    calculation = calculation.slice(0, -currentValue.toString().length) + newValue;
+    const num = parseFloat(display.value);
+    const flippedNum = -num;
+    display.value = flippedNum;
+    currentInput = currentInput.slice(0, -num.toString().length) + flippedNum;
   }
-  para.innerText = calculation;
+  historyLog.textContent = currentInput;
 }
 
-// Function to handle button clicks
-function handler() {
-  const buttonText = this.innerText;
-  if (buttonText === "AC") {
-    // Clear the calculator screen, calculation process, and paragraph content
-    inputBox.value = "";
-    calculation = "";
-    para.innerText = "";
-  } else if (buttonText === "C") {
-    inputBox.value = inputBox.value.slice(0, -1); // Remove the last character from the input box
-    calculation = calculation.slice(0, -1); // Remove the last character from the calculation process
-    para.innerText = calculation;
-  } else if (buttonText === "=") {
-    const result = evaluateExpression(calculation);
-    inputBox.value = result !== null ? result : "";
-    para.innerText = calculation + " = " + inputBox.value;
-  } else if (buttonText === "%") {
-    const percentage = evaluateExpression(calculation) / 100;
-    inputBox.value = percentage;
-    calculation = percentage.toString();
-    para.innerText = calculation;
-  } else if (buttonText === ".") {
-    if (!calculation.includes(".")) {
-      inputBox.value += buttonText;
-      calculation += buttonText;
-      para.innerText = calculation;
-    }
-  } else if (buttonText === "√") {
-    const sqrt = Math.sqrt(evaluateExpression(calculation));
-    inputBox.value = sqrt;
-    calculation = sqrt.toString();
-    para.innerText = calculation;
-  } else if (buttonText === "(" || buttonText === ")") {
-    inputBox.value += buttonText;
-    calculation += buttonText;
-    para.innerText = calculation;
-  } else if (buttonText === "÷" || buttonText === "^") {
-    inputBox.value += buttonText;
-    calculation += buttonText;
-    para.innerText = calculation;
-  } else if (buttonText === "+/-") {
-    handleSignChange(); // Handle sign change button click
-  } else {
-    // Check if the input is a number or a valid operator (+, -, *, /)
-    if (!isNaN(buttonText) || ["+", "-", "*", "/"].includes(buttonText)) {
-      inputBox.value += buttonText;
-      calculation += buttonText;
-      para.innerText = calculation;
-    }
+// Processes button clicks
+function processKeyPress() {
+  const keyValue = this.textContent;
+
+  switch (keyValue) {
+    case "AC":
+      display.value = "";
+      currentInput = "";
+      historyLog.textContent = "";
+      break;
+
+    case "C":
+      display.value = display.value.slice(0, -1);
+      currentInput = currentInput.slice(0, -1);
+      historyLog.textContent = currentInput;
+      break;
+
+    case "=":
+      const outcome = computeResult(currentInput);
+      display.value = outcome !== null ? outcome : "Error";
+      historyLog.textContent = `${currentInput} = ${display.value}`;
+      break;
+
+    case "%":
+      const percentResult = computeResult(currentInput) / 100;
+      display.value = percentResult;
+      currentInput = percentResult.toString();
+      historyLog.textContent = currentInput;
+      break;
+
+    case ".":
+      if (!currentInput.includes(".")) {
+        display.value += keyValue;
+        currentInput += keyValue;
+        historyLog.textContent = currentInput;
+      }
+      break;
+
+    case "√":
+      const root = Math.sqrt(computeResult(currentInput));
+      display.value = root;
+      currentInput = root.toString();
+      historyLog.textContent = currentInput;
+      break;
+
+    case "+/-":
+      toggleSign();
+      break;
+
+    default:
+      if (
+        !isNaN(keyValue) || // Numbers
+        ["+", "-", "*", "/", "(", ")", "÷", "^"].includes(keyValue) // Operators
+      ) {
+        display.value += keyValue;
+        currentInput += keyValue;
+        historyLog.textContent = currentInput;
+      }
   }
 }
 
-// Add click event listeners to number buttons
-numberButtons.forEach(function (button) {
-  button.addEventListener("click", handler);
+// Attach event listeners to all calculator buttons
+calcKeys.forEach((key) => {
+  key.addEventListener("click", processKeyPress);
 });
 
-// Add event listener for Enter key press
-document.addEventListener("keydown", function (event) {
-  const buttonText = event.key;
-  if (buttonText === "Enter") {
-    const result = evaluateExpression(calculation);
-    inputBox.value = result !== null ? result : "";
-    para.innerText = calculation + " = " + inputBox.value;
+// Handle keyboard input
+document.addEventListener("keydown", (e) => {
+  const pressedKey = e.key;
+
+  if (pressedKey === "Enter") {
+    const result = computeResult(currentInput);
+    display.value = result !== null ? result : "Error";
+    historyLog.textContent = `${currentInput} = ${display.value}`;
   } else if (
-    !isNaN(buttonText) ||
-    ["+", "-", "*", "/", ".", "%", "(", ")", "÷", "^"].includes(buttonText)
+    !isNaN(pressedKey) || // Numbers
+    ["+", "-", "*", "/", ".", "%", "(", ")", "÷", "^"].includes(pressedKey) // Operators
   ) {
-    inputBox.value += buttonText;
-    calculation += buttonText;
-    para.innerText = calculation;
+    display.value += pressedKey;
+    currentInput += pressedKey;
+    historyLog.textContent = currentInput;
   }
 });
