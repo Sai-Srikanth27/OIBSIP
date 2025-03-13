@@ -11,7 +11,7 @@ In this task, I developed a calculator web application using HTML, CSS, and Java
 
 ### Task 2: Tribute Page - Dr. B. R. Ambedkar
 
-For the second task, I created a tribute page dedicated to Dr. B. R. Ambedkar. The page provides information about Dr. Ambedkar's life, achievements, and contributions. It includes a visually appealing design and relevant content to honor his significant impact.
+For the second task, I developed a tribute page dedicated to Ram Gopal Varma (RGV), a visionary Indian filmmaker. The page explores RGV's life, cinematic achievements, and bold contributions to Indian cinema. It features an engaging, cinematic-inspired design and meaningful content to celebrate his profound influence on storytelling and filmmaking.
 
 ### Task 3: Todo Web App
 
