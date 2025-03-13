@@ -9,8 +9,8 @@ This repository contains the completed tasks for the Oasis Infobyte internship. 
 
 In this task, I developed a calculator web application using HTML, CSS, and JavaScript. The calculator allows users to perform basic mathematical operations such as addition, subtraction, multiplication, and division. The interface is user-friendly and responsive.
 
-### Task 2: Tribute Page - Ram Gopal Varma
-For the second task, I designed a tribute page dedicated to Ram Gopal Varma (RGV), an influential Indian filmmaker. The page offers insights into RGV's life, cinematic milestones, and innovative contributions to Indian cinema. It features a striking, cinema-inspired design and thoughtfully curated content to pay homage to his transformative impact on the film industry.
+### Task 2: Tribute Page - Penmetsa Ram Gopal Varma
+For the second task, I designed a tribute page dedicated to Penmetsa Ram Gopal Varma, an influential Indian filmmaker widely known as RGV. The page offers insights into Penmetsa Ram Gopal Varma's life, cinematic milestones, and innovative contributions to Indian cinema. It features a striking, cinema-inspired design and thoughtfully curated content to pay homage to his transformative impact on the film industry.
 
 ### Task 3: Todo Web App
 
