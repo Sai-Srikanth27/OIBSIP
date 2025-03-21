@@ -9,17 +9,20 @@
 
 /* Body Background */
 body {
-    background: #e8ecef;
+    background: #f4f4f4;
     font-family: 'Arial', sans-serif;
+    color: #333;
 }
 
 /* Main Container */
 .main-container {
-    background: linear-gradient(90deg, #1a2a6c 10%, #b21f1f 50%, #fdbb2d 100%);
-    border-radius: 25px;
-    margin: 40px 60px 20px 60px;
-    padding: 25px;
+    background: linear-gradient(90deg, #002f4b 10%, #dc4225 50%, #fbbd08 100%);
+    border-radius: 20px;
+    margin: 40px auto;
+    padding: 30px;
     color: #fff;
+    max-width: 900px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Header Styling */
@@ -30,9 +33,10 @@ body {
 
 .title-bar h1 {
     color: #ffd700;
-    font-size: 50px;
-    font-family: 'Georgia', 'Times New Roman', Times, serif;
+    font-size: 48px;
+    font-family: 'Georgia', serif;
     font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .title-bar p {
@@ -50,33 +54,39 @@ body {
 
 .profile-pic {
     border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+    max-width: 100%;
+    height: auto;
 }
 
 .image-box figcaption {
     font-family: 'Consolas', monospace;
-    font-size: 18px;
+    font-size: 16px;
     padding: 8px;
     color: #e0e0e0;
+    text-align: center;
 }
 
 /* Biography Content */
 .bio-content {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
-    padding: 20px;
+    padding: 25px;
     color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .bio-content h2 {
     font-family: 'Franklin Gothic Medium', sans-serif;
-    color: #1a2a6c;
-    margin: 15px 0 10px;
+    color: #002f4b;
+    margin: 15px 0;
+    border-bottom: 2px solid #002f4b;
+    padding-bottom: 5px;
 }
 
 .bio-content p {
     font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
-    line-height: 1.6;
+    line-height: 1.8;
     padding: 10px 0;
 }
 
@@ -108,31 +118,29 @@ body {
 .learn-more a {
     color: #fff;
     text-decoration: none;
+    font-weight: bold;
 }
 
 .learn-more:hover {
     background: #cc3700;
-    padding: 14px 28px;
+    padding: 14px 30px;
 }
 
 /* Footer */
 .page-footer {
-    border-top: 1px solid #ccc;
+    border-top: 2px solid #ccc;
     text-align: center;
     padding: 15px 0;
-    margin-top: 20px;
+    margin-top: 30px;
     color: #ddd;
-}
-
-.page-footer p {
-    font-family: 'Verdana', sans-serif;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .page-footer a {
     color: #ffd700;
     margin: 0 10px;
     text-decoration: none;
+    font-weight: bold;
 }
 
 .page-footer a:hover {
@@ -144,14 +152,14 @@ body {
 }
 
 /* Responsive Design */
-@media screen and (max-width: 639px) {
+@media screen and (max-width: 768px) {
     .main-container {
-        margin: 10px;
-        padding: 15px;
+        margin: 20px;
+        padding: 20px;
     }
 
     .title-bar h1 {
-        font-size: 40px;
+        font-size: 38px;
     }
 
     .title-bar p {
@@ -159,8 +167,8 @@ body {
     }
 
     .profile-pic {
-        width: 300px;
-        height: 225px;
+        width: 80%;
+        max-width: 300px;
     }
 
     .bio-content {
@@ -173,6 +181,6 @@ body {
     }
 
     .page-footer {
-        margin: 0 5px;
+        margin: 0 10px;
     }
 }
