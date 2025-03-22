@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Core Wrapper -->
     <section class="task-wrapper">
         <div class="task-board">
             <header class="task-header">
@@ -23,7 +22,72 @@
             <ul id="task-list" class="task-items"></ul>
         </div>
     </section>
-    <!-- JavaScript Inclusion -->
-    <script src="app.js"></script>
+    <script>
+        // Load tasks when page loads
+        document.addEventListener('DOMContentLoaded', loadTasks);
+
+        function createTask() {
+            const taskInput = document.getElementById('task-entry');
+            const taskText = taskInput.value.trim();
+
+            if (taskText !== '') {
+                addTaskToList(taskText);
+                saveTask(taskText);
+                taskInput.value = '';
+            }
+        }
+
+        function addTaskToList(taskText) {
+            const taskList = document.getElementById('task-list');
+            const li = document.createElement('li');
+            
+            li.innerHTML = `
+                <span>${taskText}</span>
+                <button onclick="deleteTask(this)">Delete</button>
+            `;
+            taskList.appendChild(li);
+        }
+
+        function saveTask(taskText) {
+            let tasks = getTasksFromStorage();
+            tasks.push(taskText);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        function getTasksFromStorage() {
+            let tasks;
+            if (localStorage.getItem('tasks') === null) {
+                tasks = [];
+            } else {
+                tasks = JSON.parse(localStorage.getItem('tasks'));
+            }
+            return tasks;
+        }
+
+        function loadTasks() {
+            const tasks = getTasksFromStorage();
+            tasks.forEach(task => addTaskToList(task));
+        }
+
+        function deleteTask(button) {
+            const li = button.parentElement;
+            const taskText = li.querySelector('span').textContent;
+            li.remove();
+            removeTaskFromStorage(taskText);
+        }
+
+        function removeTaskFromStorage(taskText) {
+            let tasks = getTasksFromStorage();
+            tasks = tasks.filter(task => task !== taskText);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        // Add enter key support
+        document.getElementById('task-entry').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                createTask();
+            }
+        });
+    </script>
 </body>
 </html>
